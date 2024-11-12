@@ -44,7 +44,7 @@ export default function Login() {
     const response = await login(data);
 
     if (response?.error) {
-      form.setError("email", {
+      form.setError("root", {
         type: "manual",
         message: response.message,
       });
@@ -95,7 +95,11 @@ export default function Login() {
                     </FormItem>
                   )}
                 />
-
+                {!!form.formState.errors.root?.message && (
+                  <FormMessage>
+                    {form.formState.errors.root?.message}
+                  </FormMessage>
+                )}
                 <Button type="submit">Login</Button>
               </fieldset>
             </form>

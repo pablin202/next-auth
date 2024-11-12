@@ -37,7 +37,7 @@ export const login = async ({
   } catch {
     return {
       error: true,
-      message: "An error occurred while registering the user",
+      message: "Incorrect user or password",
     };
   }
 };
