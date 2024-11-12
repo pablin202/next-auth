@@ -61,7 +61,7 @@ export default function Register() {
           </CardHeader>
           <CardContent>
             <Button asChild className="w-full">
-                <Link href="/login">Login to your account</Link>
+              <Link href="/login">Login to your account</Link>
             </Button>
           </CardContent>
         </Card>
@@ -125,7 +125,14 @@ export default function Register() {
               </form>
             </Form>
           </CardContent>
-          <CardFooter></CardFooter>
+          <CardFooter className="flex-col gap-2">
+            <div className="text-muted-foreground text-sm">
+              Already have an account?{" "}
+              <Link href="/login" className="underline">
+                Login
+              </Link>
+            </div>
+          </CardFooter>
         </Card>
       )}
     </main>

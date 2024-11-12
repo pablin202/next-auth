@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { passwordSchema } from "@/validation/passwordSchema";
 import { login } from "./actions";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -53,6 +54,8 @@ export default function Login() {
 
     router.push("/my-account");
   };
+
+  const email = form.getValues("email");
 
   return (
     <main className="flex justify-center items-center min-h-screen">
@@ -105,7 +108,25 @@ export default function Login() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter></CardFooter>
+        <CardFooter className="flex-col gap-2">
+          <div className="text-muted-foreground text-sm">
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="underline">
+              Register
+            </Link>
+          </div>
+          <div className="text-muted-foreground text-sm">
+            Forgot password?{" "}
+            <Link
+              href={`/password-reset${
+                email ? `?email=${encodeURIComponent(email)}` : ""
+              }`}
+              className="underline"
+            >
+              Reset my password
+            </Link>
+          </div>
+        </CardFooter>
       </Card>
     </main>
   );
