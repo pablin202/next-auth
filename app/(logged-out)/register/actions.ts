@@ -4,7 +4,7 @@ import db from "@/db/drizzle";
 import { passwordMatchSchema } from "@/validation/passwordMatchSchema";
 import { z } from "zod";
 import { hash } from "bcryptjs";
-import { users } from "../../db/usersSchema";
+import { users } from "../../../db/usersSchema";
 
 export const registerUser = async ({
   email,
