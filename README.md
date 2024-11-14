@@ -46,7 +46,6 @@ Here are some screenshots of the application:
    ```
     npm install
 
-
 3. **Create your database**:
 
 	•	Set up a PostgreSQL database, either locally or using a cloud service like Neon.
@@ -56,7 +55,8 @@ Here are some screenshots of the application:
 	•	Create a .env.local file in the root directory.
 	•	Add the following environment variable, replacing the URL with your database URL:
 
-NEON_DATABASE_URL=your_database_url
+   ```
+    NEON_DATABASE_URL=your_database_url
 
 
 4. **Run the Drizzle Kit Migration:**:
@@ -64,7 +64,6 @@ NEON_DATABASE_URL=your_database_url
 
    ```
     npx drizzle-kit push
-
 
 4. **Start the development server:**:
 
