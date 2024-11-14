@@ -39,32 +39,37 @@ Here are some screenshots of the application:
 
    ```bash
    git clone https://github.com/pablin202/next-auth.git
-   cd your-repo
+   cd next-auth
 
-	2.	Install dependencies:
+2. **Install dependencies**:
 
-npm install
+   ```
+    npm install
 
 
-	3.	Create your database:
+3. **Create your database**:
+
 	•	Set up a PostgreSQL database, either locally or using a cloud service like Neon.
 	•	Copy the database URL.
-	4.	Configure Environment Variables:
+
+4. **Configure Environment Variables:**:
 	•	Create a .env.local file in the root directory.
 	•	Add the following environment variable, replacing the URL with your database URL:
 
 NEON_DATABASE_URL=your_database_url
 
 
-	5.	Run the Drizzle Kit Migration:
+4. **Run the Drizzle Kit Migration:**:
 	•	Use Drizzle Kit to push the database schema to your database:
 
-npx drizzle-kit push
+   ```
+    npx drizzle-kit push
 
 
-	6.	Start the development server:
+4. **Start the development server:**:
 
-npm run dev
+   ```
+    npm run dev
 
 The app should now be running at http://localhost:3000.
 
@@ -94,5 +99,3 @@ Technologies Used
 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-Este `README.md` está listo para usar y presenta toda la información de manera clara y organizada. Asegúrate de reemplazar los enlaces de imágenes y las URLs donde sea necesario.
