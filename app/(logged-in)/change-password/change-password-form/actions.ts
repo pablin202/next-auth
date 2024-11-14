@@ -9,7 +9,7 @@ import { compare, hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 
-export const changePasswrod = async (
+export const changePassword = async (
   {
     currentPassword,
     password,

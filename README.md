@@ -1,5 +1,3 @@
-Aquí tienes el README.md completamente en formato Markdown:
-
 # Next.js Authentication App
 
 This is a Next.js 14 application with a complete authentication flow, including email and password login, signup, reset password, and 2FA. The app is built with TypeScript, uses Drizzle ORM with a PostgreSQL database, and features the Next.js app router.

@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { passwordSchema } from "@/validation/passwordSchema";
 import { passwordMatchSchema } from "@/validation/passwordMatchSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -15,30 +14,38 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { changePassword } from "./actions";
-import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { updatePassword } from "./actions";
+import { Link } from "lucide-react";
 
-const formSchema = z.object({
-  currentPassword: passwordSchema,
-}).and(passwordMatchSchema);
+const formSchema = passwordMatchSchema;
 
-export default function ChangePasswordForm() {
+type Props = {
+  token: string;
+};
 
-  const router = useRouter();
+export default function UpdatePasswordForm({ token }: Props) {
+
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      currentPassword: "",
       password: "",
       confirmPassword: "",
     },
   });
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    const response = await changePassword(data);
+    const response = await updatePassword({
+      token: token,
+      password: data.password,
+      confirmPassword: data.confirmPassword
+    });
+
+    if (response?.tokenInvalid) {
+      window.location.reload();
+    }
 
     if (response?.error) {
       form.setError("root", {
@@ -52,31 +59,23 @@ export default function ChangePasswordForm() {
         description: "Password changed successfully",
         className: "bg-green-500 text-white",
       });
-      router.push("/my-account");
     }
   }
 
-  return (
+  return form.formState.isSubmitSuccessful ? (
+    <div>
+      You password has been updated.{" "}
+      <Link className="underline" href="/login">
+        Click here to login to your account
+      </Link>
+    </div>
+  ) : (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <fieldset
           disabled={form.formState.isSubmitting}
           className="flex flex-col gap-2"
         >
-          <FormField
-            control={form.control}
-            name="currentPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Current Password</FormLabel>
-                <FormControl>
-                  <Input {...field} type="password" />
-                </FormControl>
-                <FormMessage></FormMessage>
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="password"
@@ -86,33 +85,29 @@ export default function ChangePasswordForm() {
                 <FormControl>
                   <Input {...field} type="password" />
                 </FormControl>
-                <FormMessage></FormMessage>
+                <FormMessage />
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>New Confirm Password</FormLabel>
+                <FormLabel>New Password Confirm</FormLabel>
                 <FormControl>
                   <Input {...field} type="password" />
                 </FormControl>
-                <FormMessage></FormMessage>
+                <FormMessage />
               </FormItem>
             )}
           />
-
           {!!form.formState.errors.root?.message && (
-            <FormMessage>
-              {form.formState.errors.root?.message}
-            </FormMessage>
+            <FormMessage>{form.formState.errors.root?.message}</FormMessage>
           )}
-
-          <Button type="submit">Change Password</Button>
+          <Button type="submit">Update Password</Button>
         </fieldset>
       </form>
-    </Form>)
+    </Form>
+  );
 }

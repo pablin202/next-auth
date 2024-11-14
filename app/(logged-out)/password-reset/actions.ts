@@ -45,9 +45,4 @@ export const resetPassword = async ({
         expires_at: new Date(Date.now() + 1000 * 60 * 60),
       },
     });
-
-  return {
-    error: true,
-    message: "You must be logged in to change your password"
-  }
 }
