@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import db from "@/db/drizzle";
 import { users, passwordResetTokens } from "@/db/schema";
+import { mailer } from "@/lib/email";
 import { randomBytes } from "crypto";
 import { eq } from "drizzle-orm";
 
@@ -44,5 +45,15 @@ export const resetPassword = async ({
         token: passwordResetToken,
         expires_at: new Date(Date.now() + 1000 * 60 * 60),
       },
+    });
+
+    //todo change this to the actual link
+    const resetLink = `http://localhost:3000/update-password?token=${passwordResetToken}`;
+
+    await mailer.sendMail({
+      from: "test@resend.dev",
+      to: email,
+      subject: "Reset your password",
+      text: `Click the link to reset your password: ${resetLink}. This link will expire in 1 hour.`,
     });
 }
