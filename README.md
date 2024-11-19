@@ -16,13 +16,15 @@ This is a Next.js 14 application with a complete authentication flow, including 
 
 Here are some screenshots of the application:
 
-| Login Screen                         | Signup Screen                          | Dashboard                          |
-| ------------------------------------ | -------------------------------------- | ---------------------------------- |
-| ![Login Screen](screenshots/login.png) | ![Signup Screen](screenshots/signup.png) | ![Dashboard](screenshots/dashboard.png) |
+| Login Screen                         | Dashboard                          |
+| ------------------------------------ | ---------------------------------- |
+| ![Login Screen](https://github.com/user-attachments/assets/d1a19bef-8f40-4687-a94c-2f478a78ceeb)| ![Dashboard](https://github.com/user-attachments/assets/7ce8bbf6-ccb9-4274-8655-74afdfe4e2f3)
+) |
 
-| Profile Screen                       | 2FA Setup Screen                       | Password Reset Screen              |
-| ------------------------------------ | -------------------------------------- | ---------------------------------- |
-| ![Profile Screen](screenshots/profile.png) | ![2FA Setup](screenshots/2fa.png)       | ![Password Reset](screenshots/reset.png) |
+| 2FA Setup Screen                       | Password Reset Screen              |
+| -------------------------------------- | ---------------------------------- |
+| ![2FA Setup](https://github.com/user-attachments/assets/25d30ecf-8458-4ec4-9108-fb7de1454f4d)| ![Password Reset](https://github.com/user-attachments/assets/76b8c7e8-432f-4e1b-8876-6005df3d50b8)
+) |
 
 ## Getting Started
 
